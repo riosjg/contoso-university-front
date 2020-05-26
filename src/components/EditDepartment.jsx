@@ -1,4 +1,5 @@
 import React from 'react';
+import Department from '../views/Department';
 
 export default function(props){
     const submitForm = async (e) => {
@@ -11,36 +12,36 @@ export default function(props){
               });
               let json = JSON.stringify(object);
               console.log(json);
-              await fetch('https://localhost:44340/api/addDepartment', {
-                method: 'POST',
+              
+              await fetch(`https://localhost:44340/api/editDepartment/${props.department.Id}`, {
+                method: 'PUT',
                 headers: {
-                  "Content-Type": "application/json"
+                  "Content-Type" : "application/json"
                 },
                 body: json
               })
-              await props.refresh();
-              props.closeWindow();
+                await props.refresh();
+                props.closeWindow();
+              
 
             //   .then(res => {
-            //     if(res.ok){
-            //       return res.json()
+            //     if(res.
             //     }else{
-            //       return new Promise.reject(res.json())
+            //       return new Promise.reject(res.json())ok){
+            //       return res.json()
             //     }
             //   })
         }
     return(
         <div>
-            <form id="editDepForm" action>
+            <form id="editDepForm">
                 <div>
-                    <label for="Title"> </label>
-                    <input id="Title" name="Title" placeholder="Department's name"/>
+                    <input id="Title" name="Title" value={props.department.Title} readOnly/>
                 </div>
                 <div>
-                    <label for="Description"> </label>
                     <input id="Description" name="Description" placeholder="Department's description"/>
                 </div>
-                <button id="submit" class="submit btn btn-primary" onClick={submitForm}>Enviar</button>
+                <button id="submit" className="submit btn btn-primary" onClick={submitForm}>Edit</button>
             </form>
         </div>
     )

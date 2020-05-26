@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import Add from '../components/AddDepartment'
 import Edit from '../components/EditDepartment'
 
 export default function(){
     const [departmentsList, setDepartmentsList] = useState([]);
     const [actualDepartment, setActualDepartment]  = useState([]);
+    const [department, setDepartment]  = useState([]);
     const [changed, setChanged] = useState(false);
+    const [showAdd, setShowAdd] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const filterDepartments = () => {
         let insertedTitle = document.getElementById("searchInput").value;
-        console.log(departmentsList)
         //if there are any department
         // if(departmentsList == ''){
         //     console.log("there aren't any department on the db");
@@ -24,10 +26,15 @@ export default function(){
                 return d.Title.toLowerCase().match(insertedTitle.toLowerCase());
             }))
         }
-        manageEditWindow();
+        
     }
-    const manageEditWindow = () => {
+    const manageEditWindow = async (e) => {
+        await setDepartment(e);
+        console.log(actualDepartment)
         setShowEdit(!showEdit);
+    }
+    const manageAddWindow = () => {
+        setShowAdd(!showAdd);
     }
     const refreshList = () => {
         setChanged(!changed);
@@ -45,7 +52,6 @@ export default function(){
             let res = await fetch('https://localhost:44340/api/departments');
             response = await res.json();
             setDepartmentsList(response);
-            console.log('actualizando...')
         }) ()
     }, [changed])
 
@@ -53,9 +59,10 @@ export default function(){
         <>
             <h1>Departments List</h1>
             <label>Title:
-                <input id="searchInput"></input>
+                <input id="searchInput" placeholder="Search by title"></input>
             </label>
             <button onClick={filterDepartments} type="button">Search</button>
+            <button onClick={manageAddWindow} type="button">Add Bullshit</button>
             <table>
                 <thead>
                     <tr>
@@ -71,14 +78,14 @@ export default function(){
                             <td>{e.Id}</td>
                             <td>{e.Title}</td>
                             <td>{e.Description}</td>
-                            <td>Editar</td>
+                            <td><button onClick={() => manageEditWindow(e)} type="button" >Edit</button></td>
                             <td><button onClick={() => deleteDepartment(e.Id)} type="button" >Delete</button></td>
                         </tr>
                     )}
                 </tbody>
             </table>
-
-            {showEdit ? <Edit closeWindow={() => manageEditWindow()} refresh={() => refreshList()} /> : null}
+            {showEdit ? <Edit closeWindow={() => setShowEdit(!showEdit)} refresh={() => refreshList()} department={department} /> : null}
+            {showAdd ? <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} /> : null}
         </>
      );
 }
