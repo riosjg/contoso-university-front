@@ -3,7 +3,7 @@ import React from 'react';
 export default function(props){
     const submitForm = async (e) => {
             e.preventDefault();
-            let formElem = document.getElementById("addDepForm");
+            let formElem = document.getElementById("addInsForm");
             let formData = new FormData(formElem);              
             let object = {};
             formData.forEach((value, key) => {
@@ -11,7 +11,7 @@ export default function(props){
             });
             let json = JSON.stringify(object);
             console.log(json);
-            await fetch('https://localhost:44340/api/addDepartment', {
+            await fetch('https://localhost:44340/api/addInstructor', {
                 method: 'POST',
                 headers: {
                   "Content-Type": "application/json"
@@ -31,16 +31,18 @@ export default function(props){
         }
     return(
         <div>
-            <form id="addDepForm">
+            <form id="addInsForm">
                 <div>
-                    <input id="Title" name="Title" placeholder="Department's name"/>
+                    <input id="Name" name="Name" placeholder="Instructor's Name"/>
                 </div>
                 <div>
-                    <input id="Description" name="Description" placeholder="Department's description"/>
+                    <input id="LastName" name="LastName" placeholder="Instructor's last name"/>
+                </div>
+                <div>
+                    <input id="HireDate" name="HireDate" type="date"/>
                 </div>
                 <button id="submit" className="submit btn btn-primary" onClick={submitForm}>Add</button>
                 <button onClick={() => props.closeWindow()}>Cancel</button>
-
             </form>
         </div>
     )
