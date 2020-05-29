@@ -84,8 +84,8 @@ export default function(){
                     )}
                 </tbody>
             </table>
-            {showEdit ? <Edit closeWindow={() => setShowEdit(!showEdit)} refresh={() => refreshList()} department={department} /> : null}
-            {showAdd ? <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} /> : null}
+            {showEdit && <Edit closeWindow={() => setShowEdit(!showEdit)} refresh={() => refreshList()} department={department} />}
+            {showAdd && <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} />}
         </>
      );
 }
