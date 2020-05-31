@@ -1,17 +1,17 @@
 import React from 'react';
 import './App.css';
-import Test from './views/Test'
 import Department from './views/Departments'
 import Instructor from './views/Instructors'
 import Student from './views/Students'
+import Course from './views/Courses'
 
 function App() {
   return (
     <div className="App">
-      {/* <Test /> */}
       <Department />
       <Instructor />
       <Student />
+      <Course />
     </div>
   );
 }
