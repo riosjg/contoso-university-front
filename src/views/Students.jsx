@@ -69,15 +69,15 @@ export default function(){
                     {actualStudent.map( (e, index) =>
                         <tr key={index}>
                             <td>{e.Id}</td>
-                            <td>{e.LastName + " " + e.Name}</td>
+                            <td>{`${e.LastName}, ${e.Name}`}</td>
                             <td><button onClick={() => manageEditWindow(e)} type="button" >Edit</button></td>
                             <td><button onClick={() => deleteStudent(e.Id)} type="button" >Delete</button></td>
                         </tr>
                     )}
                 </tbody>
             </table>
-            {showEdit ? <Edit closeWindow={() => setShowEdit(!showEdit)} refresh={() => refreshList()} student={student} /> : null}
-            {showAdd ? <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} /> : null}
+            {showEdit && <Edit closeWindow={() => setShowEdit(!showEdit)} refresh={() => refreshList()} student={student} />}
+            {showAdd && <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} />}
         </>
      );
 }
