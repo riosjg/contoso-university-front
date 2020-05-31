@@ -62,7 +62,7 @@ export default function(){
                 <input id="searchInput" placeholder="Search by title"></input>
             </label>
             <button onClick={filterDepartments} type="button">Search</button>
-            <button onClick={manageAddWindow} type="button">Add Department</button>
+            <button onClick={manageAddWindow} type="button">Add Bullshit</button>
             <table>
                 <thead>
                     <tr>
@@ -84,8 +84,8 @@ export default function(){
                     )}
                 </tbody>
             </table>
-            {showEdit && <Edit closeWindow={() => setShowEdit(!showEdit)} refresh={() => refreshList()} department={department} />}
-            {showAdd && <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} />}
+            {showEdit ? <Edit closeWindow={() => setShowEdit(!showEdit)} refresh={() => refreshList()} department={department} /> : null}
+            {showAdd ? <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} /> : null}
         </>
      );
 }
