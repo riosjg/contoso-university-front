@@ -21,13 +21,6 @@ export default function(props){
             await props.refresh();
             props.closeWindow();
 
-            //   .then(res => {
-            //     if(res.ok){
-            //       return res.json()
-            //     }else{
-            //       return new Promise.reject(res.json())
-            //     }
-            //   })
         }
     return(
         <div>
@@ -39,10 +32,18 @@ export default function(props){
                     <input id="Capacity" name="Capacity" placeholder="Course capacity"/>
                 </div>
                 <div>
-                    <input id="Department" name="Department" type="select"/>
+                    <select id="selectDepartment" name="DepartmentId">
+                        {props.departments.map((e,index) =>
+                            <option value={e.Id} key={index}>{e.Title}</option>
+                        )}
+                    </select>
                 </div>
                 <div>
-                    <input id="Instructor" name="Instructor" type="select"/>
+                <select id="selectInstructor" name="InstructorId">
+                        {props.instructors.map((e,index) =>
+                            <option value={e.Id} key={index}>{e.LastName}</option>
+                        )}
+                    </select>
                 </div>
                 <button id="submit" className="submit btn btn-primary" onClick={submitForm}>Add Course</button>
                 <button onClick={() => props.closeWindow()}>Cancel</button>
