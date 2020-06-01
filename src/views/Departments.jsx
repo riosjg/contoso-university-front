@@ -62,7 +62,7 @@ export default function(){
                 <input id="searchInput" placeholder="Search by title"></input>
             </label>
             <button onClick={filterDepartments} type="button">Search</button>
-            <button onClick={manageAddWindow} type="button">Add Department</button>
+            <button onClick={manageAddWindow} type="button">Add Bullshit</button>
             <table>
                 <thead>
                     <tr>
