@@ -10,7 +10,7 @@ export default function(){
     const [showAdd, setShowAdd] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
     const filterDepartments = () => {
-        let insertedTitle = document.getElementById("searchInput").value;
+        let insertedTitle = document.getElementById("searchDepInput").value;
         //if there are any department
         // if(departmentsList == ''){
         //     console.log("there aren't any department on the db");
@@ -41,9 +41,22 @@ export default function(){
         setActualDepartment([]); //cleans the actual table
     }
     const deleteDepartment = async (id) => {
-        await fetch (`https://localhost:44340/api/deleteDepartment/${id}`,{
-            method: 'DELETE'
+        let res = await fetch('https://localhost:44340/api/courses');
+        let response = await res.json();
+        let found;
+        console.log(response);
+        response.forEach( c => {
+            if(c.DepartmentId === id){
+                alert('This department has a course in charge');
+                found = true;
+            }
         })
+        if(!found){
+            console.log("deletean2")
+            await fetch (`https://localhost:44340/api/deleteDepartment/${id}`,{
+                method: 'DELETE'
+            })
+        }
         await refreshList();  //loads the new list of departments
     }
     useEffect( () => {
@@ -59,7 +72,7 @@ export default function(){
         <>
             <h1>Departments List</h1>
             <label>Title:
-                <input id="searchInput" placeholder="Search by title"></input>
+                <input id="searchDepInput" placeholder="Search by title"></input>
             </label>
             <button onClick={filterDepartments} type="button">Search</button>
             <button onClick={manageAddWindow} type="button">Add Department</button>

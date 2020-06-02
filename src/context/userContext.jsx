@@ -11,7 +11,7 @@ const UserProvider = (props) => {
         response = await res.json();
         setLoggedUser(response);
     })()
-  }, []) //Empty array as a second parameter prevents fetching an infinite amount of times because of the re-rendering of useEffect() 
+  }, [props.id]) //Empty array as a second parameter prevents fetching an infinite amount of times because of the re-rendering of useEffect() 
 
   return (
 <>

@@ -6,13 +6,10 @@ export default function(){
     const { loggedUser } = appContext;
     const [coursesList, setCoursesList] = useState([]);
     const [departmentsList, setDepartmentsList] = useState([]);
-    const [instructorsList, setInstructorsList] = useState([]);
     const [actualCourse, setActualCourse]  = useState([]);
     const [changed, setChanged] = useState(false);
-    const [showAdd, setShowAdd] = useState(false);
-    const [showEdit, setShowEdit] = useState(false);
     const filterCourses = () => {
-        let insertedTitle = document.getElementById("searchCourseInput").value;
+        let insertedTitle = document.getElementById("searchCourse").value;
         let selectedDepartment = document.getElementById("selectDpt").value;
         //shows every course if both the input and select are empty
         if(insertedTitle==='' && selectedDepartment===''){
@@ -33,10 +30,6 @@ export default function(){
                 return e.DepartmentTitle.match(selectedDepartment);
             }))
         }
-    }
-    const s = async (e) => {
-        console.log(instructorsList)
-        setShowEdit(!showEdit);
     }
     const refreshList = () => {
         setChanged(!changed);
@@ -64,9 +57,6 @@ export default function(){
             response = await res.json();
             //departments get
             setDepartmentsList(response);
-            res = await fetch('https://localhost:44340/api/instructors');
-            response = await res.json();
-            setInstructorsList(response);
             //instructors get
         }) ()
     }, [changed])
@@ -84,7 +74,7 @@ export default function(){
             </select>
             </label>
             <label>Name:
-                <input id="searchCourseInput" placeholder="Search by name"></input>
+                <input id="searchCourse" placeholder="Search by name"></input>
             </label>
             <button onClick={filterCourses} type="button">Search</button>
             <table>

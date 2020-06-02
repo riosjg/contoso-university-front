@@ -6,7 +6,7 @@ export default function(props){
         <>
             <h1>Students enrolled on {props.course.CourseTitle}</h1>
             <h3>Course ID: {props.course.CourseId}</h3>
-            <h3>Remaining capacity: {props.course.CourseCapacity - props.enrollments.length}</h3>
+    <h3>Remaining capacity: {props.course.CourseCapacity - props.enrollments.length}/{props.course.CourseCapacity}</h3>
             <table>
                 <thead>
                     <tr>
