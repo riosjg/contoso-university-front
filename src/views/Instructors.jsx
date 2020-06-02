@@ -76,7 +76,7 @@ export default function(){
                     {actualInstructor.map( (e, index) =>
                         <tr key={index}>
                             <td>{e.Id}</td>
-                            <td>{`${e.Name} ${e.LastName}`}</td>
+                            <td>{`${e.LastName.slice(0, 1).toUpperCase()}${e.LastName.slice(1)}, ${e.Name.slice(0, 1).toUpperCase()}${e.Name.slice(1)}`}</td>
                             <td>{e.HireDate.slice(8, 10)}/{e.HireDate.slice(5, 7)}/{e.HireDate.slice(0, 4)}</td>
                             <td><button onClick={() => manageEditWindow(e)} type="button" >Edit</button></td>
                             <td><button onClick={() => deleteInstructor(e.Id)} type="button" >Delete</button></td>
@@ -84,8 +84,8 @@ export default function(){
                     )}
                 </tbody>
             </table>
-            {showEdit ? <Edit closeWindow={() => setShowEdit(!showEdit)} refresh={() => refreshList()} instructor={instructor} /> : null}
-            {showAdd ? <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} /> : null}
+            {showEdit && <Edit closeWindow={() => setShowEdit(!showEdit)} refresh={() => refreshList()} instructor={instructor} />}
+            {showAdd && <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} />}
         </>
      );
 }

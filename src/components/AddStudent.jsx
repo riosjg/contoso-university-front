@@ -32,7 +32,10 @@ export default function(props){
     return(
         <div>
             <form id="addDepForm">
-            <div>
+                <div>
+                    <input id="dni" name="dni" placeholder="Student's dni"/>
+                </div>
+                <div>
                     <input id="lastName" name="lastName" placeholder="Student's lastname"/>
                 </div>
                 <div>

@@ -1,17 +1,22 @@
 import React from 'react';
 import './App.css';
+import { UserProvider } from './context/userContext'
 import Department from './views/Departments'
 import Instructor from './views/Instructors'
 import Student from './views/Students'
 import Course from './views/Courses'
+import Enrollments from './views/Enrollments'
 
 function App() {
   return (
     <div className="App">
-      <Department />
-      <Instructor />
-      <Student />
-      <Course />
+      <UserProvider  id={2}>
+        <Department />
+        <Instructor />
+        <Student />
+        <Course />
+        <Enrollments />
+      </UserProvider>
     </div>
   );
 }

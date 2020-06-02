@@ -1,19 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import Add from '../components/AddCourse'
-import Edit from '../components/EditCourse'
-import Enrolls from '../components/EnrollsByCourse'
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../context/userContext'
 
 export default function(){
+    const appContext = useContext(UserContext);
+    const { loggedUser } = appContext;
     const [coursesList, setCoursesList] = useState([]);
     const [departmentsList, setDepartmentsList] = useState([]);
     const [instructorsList, setInstructorsList] = useState([]);
     const [actualCourse, setActualCourse]  = useState([]);
-    const [course, setCourse]  = useState([]);
-    const [enrollments, setEnrollments] = useState([]);
     const [changed, setChanged] = useState(false);
     const [showAdd, setShowAdd] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
-    const [showEnrolls, setShowEnrolls] = useState(false);
     const filterCourses = () => {
         let insertedTitle = document.getElementById("searchCourseInput").value;
         let selectedDepartment = document.getElementById("selectDpt").value;
@@ -37,32 +34,24 @@ export default function(){
             }))
         }
     }
-    const manageEditWindow = async (e) => {
-        await setCourse(e);
+    const s = async (e) => {
         console.log(instructorsList)
         setShowEdit(!showEdit);
-    }
-    const manageAddWindow = () => {
-        setShowAdd(!showAdd);
     }
     const refreshList = () => {
         setChanged(!changed);
         setActualCourse([]); //cleans the actual table
     }
-    const deleteCourse = async (id) => {
-        await fetch (`https://localhost:44340/api/deleteCourse/${id}`,{
-            method: 'DELETE'
-        })
+    const enrollIntoCourse = async (e) => {
+        let json = JSON.stringify(loggedUser);
+        await fetch(`https://localhost:44340/api/addEnrollment/${e.CourseId}`, {
+                method: 'POST',
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: json
+            })
         await refreshList();  //loads the new list of departments
-    }
-    const getEnrollments = async (course) => {
-        let response;
-        let res = await fetch (`https://localhost:44340/api/enrollments/${course.CourseId}`,{
-        })
-        response = await res.json();
-        setEnrollments(response);
-        setCourse(course);
-        setShowEnrolls(!showEnrolls);
     }
     useEffect( () => {
         ( async () => {
@@ -84,7 +73,7 @@ export default function(){
 
     return ( 
         <>
-            <h1>Courses' List</h1>
+            <h1>Course Enrollment</h1>
             <label>Department
             <select id="selectDpt" name="filterDepartment" onChange={filterCourses}>
                 <option value="">All</option>
@@ -98,7 +87,6 @@ export default function(){
                 <input id="searchCourseInput" placeholder="Search by name"></input>
             </label>
             <button onClick={filterCourses} type="button">Search</button>
-            <button onClick={manageAddWindow} type="button">Add Course</button>
             <table>
                 <thead>
                     <tr>
@@ -117,16 +105,11 @@ export default function(){
                             <td>{e.CourseCapacity}</td>
                             <td>{e.DepartmentTitle}</td>
                             <td>{e.InstructorFullName}</td>
-                            <td><button onClick={() => manageEditWindow(e)} type="button" >Edit</button></td>
-                            <td><button onClick={() => deleteCourse(e.CourseId)} type="button" >Delete</button></td>
-                            <td><button onClick={() => getEnrollments(e)} type="button" >Students enrolled</button></td>
+                            <td><button onClick={() => enrollIntoCourse(e)} type="button" >Enroll</button></td>
                         </tr>
                     )}
                 </tbody>
             </table>
-            {showEdit && <Edit closeWindow={() => setShowEdit(!showEdit)} refresh={() => refreshList()} instructors={instructorsList} course={course} />}
-            {showAdd && <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} instructors={instructorsList} departments={departmentsList} />}
-            {showEnrolls && <Enrolls closeWindow={() => setShowEnrolls(!showEnrolls)} enrollments={enrollments} course={course} />}
         </>
      );
 }

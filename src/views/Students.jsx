@@ -61,6 +61,7 @@ export default function(){
                 <thead>
                     <tr>
                         <th>Student ID</th>
+                        <th>DNI</th>
                         <th>Fullname</th>
                         <th>Action</th>
                     </tr>
@@ -69,7 +70,8 @@ export default function(){
                     {actualStudent.map( (e, index) =>
                         <tr key={index}>
                             <td>{e.Id}</td>
-                            <td>{`${e.LastName}, ${e.Name}`}</td>
+                            <td>{e.Dni}</td>
+                            <td>{`${e.LastName.slice(0, 1).toUpperCase()}${e.LastName.slice(1)}, ${e.Name.slice(0, 1).toUpperCase()}${e.Name.slice(1)}`}</td>
                             <td><button onClick={() => manageEditWindow(e)} type="button" >Edit</button></td>
                             <td><button onClick={() => deleteStudent(e.Id)} type="button" >Delete</button></td>
                         </tr>

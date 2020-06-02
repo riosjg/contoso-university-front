@@ -35,6 +35,9 @@ export default function(props){
         <div>
             <form id="editDepForm">
                 <div>
+                    <input id="dni" name="dni" value={props.student.Dni} readOnly/>
+                </div>
+                <div>
                     <input id="lastName" name="lastName" placeholder={props.student.LastName}/>
                 </div>
                 <div>

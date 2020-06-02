@@ -12,7 +12,7 @@ export default function(props){
               let json = JSON.stringify(object);
               console.log(json);
               
-              await fetch(`https://localhost:44340/api/editCourse/${props.course.Id}`, {
+              await fetch(`https://localhost:44340/api/editCourse/${props.course.CourseId}`, {
                 method: 'PUT',
                 headers: {
                   "Content-Type" : "application/json"
@@ -33,18 +33,23 @@ export default function(props){
         }
     return(
         <div>
+            <input value={props.course.CourseId} readOnly/>
             <form id="editCourseForm">
                 <div>
-                    <input id="Title" name="Title" placeholder="Course title"/>
+                    <input id="CourseTitle" name="CourseTitle" value={props.course.CourseTitle} readOnly/>
                 </div>
                 <div>
-                    <input id="Capacity" name="Capacity" placeholder="Course capacity"/>
+                    <input id="DepartmentTitle" name="DepartmentTitle" value={props.course.DepartmentTitle} readOnly/>
                 </div>
                 <div>
-                    <input id="Department" name="Department" type="select"/>
+                <select id="selectInstructor" name="InstructorId">
+                        {props.instructors.map((e,index) =>
+                            <option value={e.Id} key={index}>{e.LastName}</option>
+                        )}
+                    </select>
                 </div>
                 <div>
-                    <input id="Instructor" name="Instructor" type="select"/>
+                    <input id="Capacity" name="Capacity" type="number" placeholder="Course capacity"/>
                 </div>
                 <button id="submit" className="submit btn btn-primary" onClick={submitForm}>Save Changes</button>
                 <button onClick={() => props.closeWindow()}>Cancel</button>

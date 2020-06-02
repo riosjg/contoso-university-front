@@ -76,7 +76,7 @@ export default function(){
                     {actualDepartment.map( (e, index) =>
                         <tr key={index}>
                             <td>{e.Id}</td>
-                            <td>{e.Title}</td>
+                            <td>{`${e.Title.slice(0, 1).toUpperCase()}${e.Title.slice(1)}`}</td>
                             <td>{e.Description}</td>
                             <td><button onClick={() => manageEditWindow(e)} type="button" >Edit</button></td>
                             <td><button onClick={() => deleteDepartment(e.Id)} type="button" >Delete</button></td>

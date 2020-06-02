@@ -29,7 +29,7 @@ export default function(props){
                     <input id="Title" name="Title" placeholder="Course title"/>
                 </div>
                 <div>
-                    <input id="Capacity" name="Capacity" placeholder="Course capacity"/>
+                    <input id="Capacity" name="Capacity" type="number" placeholder="Course capacity"/>
                 </div>
                 <div>
                     <select id="selectDepartment" name="DepartmentId">
