@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Add from '../components/AddCourse'
 import Edit from '../components/EditCourse'
+import Delete from '../components/DeleteModal'
 import Enrolls from '../components/EnrollsByCourse'
 
 export default function(){
@@ -13,6 +14,7 @@ export default function(){
     const [changed, setChanged] = useState(false);
     const [showAdd, setShowAdd] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [showEnrolls, setShowEnrolls] = useState(false);
     const filterCourses = () => {
         let insertedTitle = document.getElementById("searchCourseInput").value;
@@ -44,6 +46,10 @@ export default function(){
     }
     const manageAddWindow = () => {
         setShowAdd(!showAdd);
+    }
+    const manageModal = async (e) => {
+        await setCourse(e);
+        setShowModal(!showModal);
     }
     const refreshList = () => {
         setChanged(!changed);
@@ -118,7 +124,7 @@ export default function(){
                             <td>{e.DepartmentTitle}</td>
                             <td>{e.InstructorFullName}</td>
                             <td><button onClick={() => manageEditWindow(e)} type="button" >Edit</button></td>
-                            <td><button onClick={() => deleteCourse(e.CourseId)} type="button" >Delete</button></td>
+                            <td><button type="button" onClick={() => manageModal(e)}>Delete</button></td>
                             <td><button onClick={() => getEnrollments(e)} type="button" >Students enrolled</button></td>
                         </tr>
                     )}
@@ -126,6 +132,7 @@ export default function(){
             </table>
             {showEdit && <Edit closeWindow={() => setShowEdit(!showEdit)} refresh={() => refreshList()} instructors={instructorsList} course={course} />}
             {showAdd && <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} instructors={instructorsList} departments={departmentsList} />}
+            {showModal && <Delete closeWindow={() => setShowModal(!showModal)} refresh={() => refreshList()} elDescription={course.Title} elId={course.CourseId} deleteElement={deleteCourse}/>}
             {showEnrolls && <Enrolls closeWindow={() => setShowEnrolls(!showEnrolls)} enrollments={enrollments} course={course} />}
         </>
      );

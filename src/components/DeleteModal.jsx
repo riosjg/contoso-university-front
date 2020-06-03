@@ -5,8 +5,8 @@ export default function(props){
 return(
 <>
 <div>
-    <p>¿Esta seguro? </p>
-    <button onClick={() => props.deleteStudent(props.element.Id)} type="button">Eliminar</button>
+    <p>Are you sure that you want to delete {props.elDescription}? </p>
+    <button onClick={() => props.deleteElement(props.elId)} type="button">Eliminar</button>
     <button onClick={() => props.closeWindow()} type="button">Cancel</button>
 </div>
 </>

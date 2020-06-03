@@ -45,6 +45,7 @@ export default function(){
             method: 'DELETE'
         })
         await refreshList();  //loads the new list of students
+        await setShowModal(!showModal);
     }
     useEffect( () => {
         ( async () => {
@@ -74,29 +75,19 @@ export default function(){
                 </thead>
                 <tbody>
                     {actualStudent.map( (e, index) =>
-                    <>
                         <tr key={index}>
                             <td>{e.Id}</td>
                             <td>{e.Dni}</td>
                             <td>{`${e.LastName.slice(0, 1).toUpperCase()}${e.LastName.slice(1)}, ${e.Name.slice(0, 1).toUpperCase()}${e.Name.slice(1)}`}</td>
                             <td><button onClick={() => manageEditWindow(e)} type="button" >Edit</button></td>
-                            <td>
-                                <button type="button" onClick={() => manageModal(e)}>
-                                        Delete
-                                </button>
-                            </td>
+                            <td><button type="button" onClick={() => manageModal(e)}>Delete</button></td>
                         </tr>
-     
-                    </>
                     )}
                 </tbody>
             </table>
-            {showModal && <Delete closeWindow={() => setShowModal(!showModal)} refresh={() => refreshList()} element={student} deleteStudent={() => deleteStudent()}/>}
             {showEdit && <Edit closeWindow={() => setShowEdit(!showEdit)} refresh={() => refreshList()} student={student} />}
             {showAdd && <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} />}
-         
-
-             
+            {showModal && <Delete closeWindow={() => setShowModal(!showModal)} refresh={() => refreshList()} elDescription={student.Name + ' ' + student.LastName} elId={student.Id} deleteElement={deleteStudent}/>} 
         </>
      );
 }

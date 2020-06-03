@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Add from '../components/AddInstructor'
 import Edit from '../components/EditInstructor'
+import Delete from '../components/DeleteModal'
 
 export default function(){
     const [instructorsList, setInstructorsList] = useState([]);
@@ -9,6 +10,7 @@ export default function(){
     const [changed, setChanged] = useState(false);
     const [showAdd, setShowAdd] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const filterInstructors = () => {
         let insertedName = document.getElementById("searchInstInput").value;
         //if there are any department
@@ -36,6 +38,10 @@ export default function(){
     const manageAddWindow = () => {
         setShowAdd(!showAdd);
     }
+    const manageModal = async (e) => {
+        await setInstructor(e);
+        setShowModal(!showModal);
+    }
     const refreshList = () => {
         setChanged(!changed);
         setActualInstructor([]); //cleans the actual table
@@ -57,6 +63,7 @@ export default function(){
             })
         }
         await refreshList();  //loads the new list of departments
+        await setShowModal(!showModal);
     }
     useEffect( () => {
         ( async () => {
@@ -91,13 +98,15 @@ export default function(){
                             <td>{`${e.LastName.slice(0, 1).toUpperCase()}${e.LastName.slice(1)}, ${e.Name.slice(0, 1).toUpperCase()}${e.Name.slice(1)}`}</td>
                             <td>{e.HireDate.slice(8, 10)}/{e.HireDate.slice(5, 7)}/{e.HireDate.slice(0, 4)}</td>
                             <td><button onClick={() => manageEditWindow(e)} type="button" >Edit</button></td>
-                            <td><button onClick={() => deleteInstructor(e.Id)} type="button" >Delete</button></td>
+                            <td><button type="button" onClick={() => manageModal(e)}>Delete</button></td>
                         </tr>
                     )}
                 </tbody>
             </table>
             {showEdit && <Edit closeWindow={() => setShowEdit(!showEdit)} refresh={() => refreshList()} instructor={instructor} />}
             {showAdd && <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} />}
+            {showModal && <Delete closeWindow={() => setShowModal(!showModal)} refresh={() => refreshList()} elDescription={instructor.Name + ' ' + instructor.LastName} elId={instructor.Id} deleteElement={deleteInstructor}/>}
+
         </>
      );
 }
