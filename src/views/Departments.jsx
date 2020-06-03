@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Add from '../components/AddDepartment'
 import Edit from '../components/EditDepartment'
+import Delete from '../components/DeleteModal'
 
 export default function(){
     const [departmentsList, setDepartmentsList] = useState([]);
@@ -9,6 +10,7 @@ export default function(){
     const [changed, setChanged] = useState(false);
     const [showAdd, setShowAdd] = useState(false);
     const [showEdit, setShowEdit] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const filterDepartments = () => {
         let insertedTitle = document.getElementById("searchDepInput").value;
         //if there are any department
@@ -32,6 +34,10 @@ export default function(){
         await setDepartment(e);
         console.log(actualDepartment)
         setShowEdit(!showEdit);
+    }
+    const manageModal = async (e) => {
+        await setDepartment(e);
+        setShowModal(!showModal);
     }
     const manageAddWindow = () => {
         setShowAdd(!showAdd);
@@ -92,13 +98,14 @@ export default function(){
                             <td>{`${e.Title.slice(0, 1).toUpperCase()}${e.Title.slice(1)}`}</td>
                             <td>{e.Description}</td>
                             <td><button onClick={() => manageEditWindow(e)} type="button" >Edit</button></td>
-                            <td><button onClick={() => deleteDepartment(e.Id)} type="button" >Delete</button></td>
+                            <td><button type="button" onClick={() => manageModal(e)}>Delete</button></td>
                         </tr>
                     )}
                 </tbody>
             </table>
             {showEdit && <Edit closeWindow={() => setShowEdit(!showEdit)} refresh={() => refreshList()} department={department} />}
             {showAdd && <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} />}
+            {showModal && <Delete closeWindow={() => setShowModal(!showModal)} refresh={() => refreshList()} elDescription={department.Description} elId={department.Id} deleteElement={deleteDepartment}/>} 
         </>
      );
 }

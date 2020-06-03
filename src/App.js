@@ -1,4 +1,9 @@
 import React from 'react';
+import{
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom"
 import './App.css';
 import { UserProvider } from './context/userContext'
 import Department from './views/Departments'
@@ -6,18 +11,34 @@ import Instructor from './views/Instructors'
 import Student from './views/Students'
 import Course from './views/Courses'
 import Enrollments from './views/Enrollments'
+import Navbar from './components/Navbar'
 
 function App() {
   return (
-    <div className="App">
+    <Router>
+      <div className="App">
       <UserProvider  id={3}>
-        <Department />
-        <Instructor />
-        <Student />
-        <Course />
-        <Enrollments />
-      </UserProvider>
-    </div>
+        <Navbar></Navbar>
+        <Switch>
+          <Route path="/Department">
+            <Department />
+          </Route>
+          <Route path="/Instructor">
+            <Instructor />
+          </Route>
+          <Route path="/Student">
+            <Student />
+          </Route>
+          <Route path="/Course">
+            <Course />
+          </Route>
+          <Route path="/Enrollment">
+            <Enrollments />
+          </Route>
+        </Switch>  
+        </UserProvider>
+      </div>
+    </Router>
   );
 }
 
