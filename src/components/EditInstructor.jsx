@@ -32,22 +32,22 @@ export default function(props){
             //   })
         }
     return(
-        <div>
-            <form id="editInsForm">
+        <div className="container card w-25">
+            <form id="editInsForm" className="m-2">
                 <div>
-                    <input id="Id" name="Id" value={props.instructor.Id} readOnly/>
+                    <input className="input-group input-group-text m-1" id="Id" name="Id" value={props.instructor.Id} readOnly/>
                 </div>
                 <div>
-                    <input id="Name" name="Name" placeholder={props.instructor.Name}/>
+                    <input className="input-group input-group-text m-1" id="Name" name="Name" placeholder={props.instructor.Name}/>
                 </div>
                 <div>
-                    <input id="LastName" name="LastName" placeholder={props.instructor.LastName}/>
+                    <input className="input-group input-group-text m-1" id="LastName" name="LastName" placeholder={props.instructor.LastName}/>
                 </div>
                 <div>
-                    <input id="HireDate" name="HireDate" type="date"/>
+                    <input className="input-group input-group-text m-1" id="HireDate" name="HireDate" type="date"/>
                 </div>
-                <button id="submit" className="submit btn btn-primary" onClick={submitForm}>Save</button>
-                <button onClick={() => props.closeWindow()}>Cancel</button>
+                <button id="submit" className="btn btn-outline-success m-1" onClick={submitForm}>Save</button>
+                <button onClick={() => props.closeWindow()} className="btn btn-outline-danger m-1">Cancel</button>
             </form>
         </div>
     )

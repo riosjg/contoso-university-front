@@ -30,19 +30,19 @@ export default function(props){
             //   })
         }
     return(
-        <div>
-            <form id="addInsForm">
+        <div className="container card w-25">
+            <form id="addInsForm" className="m-2">
                 <div>
-                    <input id="Name" name="Name" placeholder="Instructor's Name"/>
+                    <input className="input-group input-group-text m-1" id="Name" name="Name" placeholder="Instructor's Name"/>
                 </div>
                 <div>
-                    <input id="LastName" name="LastName" placeholder="Instructor's last name"/>
+                    <input className="input-group input-group-text m-1" id="LastName" name="LastName" placeholder="Instructor's last name"/>
                 </div>
                 <div>
-                    <input id="HireDate" name="HireDate" type="date"/>
+                    <input className="input-group input-group-text m-1" id="HireDate" name="HireDate" type="date"/>
                 </div>
-                <button id="submit" className="submit btn btn-primary" onClick={submitForm}>Add</button>
-                <button onClick={() => props.closeWindow()}>Cancel</button>
+                <button id="submit" className="btn btn-outline-success m-1" onClick={submitForm}>Add</button>
+                <button className="btn btn-outline-danger m-1" onClick={() => props.closeWindow()}>Cancel</button>
             </form>
         </div>
     )

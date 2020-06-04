@@ -12,12 +12,14 @@ export default function(props){
             <h1>Students enrolled on {props.course.CourseTitle}</h1>
             <h3>Course ID: {props.course.CourseId}</h3>
     <h3>Remaining capacity: {props.course.CourseCapacity - props.enrollments.length}/{props.course.CourseCapacity}</h3>
-            <table>
-                <thead>
+            <table className="table">
+                <thead className="thead"> 
                     <tr>
                         <th>Student ID</th>
-                        <th>Full name</th>
-                        <th>E-mail</th>
+                        <th>Course title</th>
+                        <th>Fulname</th>
+                        <th>Actions</th>
+                        {/* aca decia Fullname - Email no me estaria acordando el motivo*/}
                     </tr>
                 </thead>
                 <tbody>
@@ -26,7 +28,7 @@ export default function(props){
                             <td>{e.StudentId}</td>
                             <td>{e.CourseTitle}</td>
                             <td>{e.StudentFullName}</td>
-                            <td><button onClick={() => deleteEnrollment(e.CourseId, e.StudentId)} type="button">Disenroll</button></td>
+                            <td><button className="btn btn-danger" onClick={() => deleteEnrollment(e.CourseId, e.StudentId)} type="button">Disenroll</button></td>
                         </tr>
                     )}
                 </tbody>

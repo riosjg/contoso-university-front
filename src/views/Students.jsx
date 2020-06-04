@@ -59,18 +59,20 @@ export default function(){
     return ( 
         <>
             <h1>Students List</h1>
-            <label>Title:
-                <input id="searchInput" placeholder="Search by title"></input>
-            </label>
-            <button onClick={filterStudents} type="button">Search</button>
-            <button onClick={manageAddWindow} type="button">Add Student</button>
-            <table>
-                <thead>
+            <div className="container w-50">
+                <label>
+                    <input className="card m-1" id="searchInput" placeholder="Search by title"></input>
+                </label>
+                <button onClick={filterStudents} type="button" className="btn btn-secondary m-1">Search</button>
+                <button onClick={manageAddWindow} type="button" className="btn btn-secondary m-1">Add Student</button>
+            </div>
+            <table className="table">
+                <thead className="thead">
                     <tr>
-                        <th>Student ID</th>
-                        <th>DNI</th>
-                        <th>Fullname</th>
-                        <th>Action</th>
+                        <th scope="col">Student ID</th>
+                        <th scope="col">DNI</th>
+                        <th scope="col">Fullname</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -79,8 +81,8 @@ export default function(){
                             <td>{e.Id}</td>
                             <td>{e.Dni}</td>
                             <td>{`${e.LastName.slice(0, 1).toUpperCase()}${e.LastName.slice(1)}, ${e.Name.slice(0, 1).toUpperCase()}${e.Name.slice(1)}`}</td>
-                            <td><button onClick={() => manageEditWindow(e)} type="button" >Edit</button></td>
-                            <td><button type="button" onClick={() => manageModal(e)}>Delete</button></td>
+                            <td><button className="btn btn-warning" onClick={() => manageEditWindow(e)} type="button" >Edit</button></td>
+                            <td><button className="btn btn-danger" type="button" onClick={() => manageModal(e)}>Delete</button></td>
                         </tr>
                     )}
                 </tbody>

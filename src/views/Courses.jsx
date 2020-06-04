@@ -91,28 +91,32 @@ export default function(){
     return ( 
         <>
             <h1>Courses' List</h1>
-            <label>Department
-            <select id="selectDpt" name="filterDepartment" onChange={filterCourses}>
-                <option value="">All</option>
-                {departmentsList.map((e,index) =>
-                    <option value={e.Title} key={index}>{e.Title}</option>
-                    
-                )} 
-            </select>
-            </label>
-            <label>Name:
-                <input id="searchCourseInput" placeholder="Search by name"></input>
-            </label>
-            <button onClick={filterCourses} type="button">Search</button>
-            <button onClick={manageAddWindow} type="button">Add Course</button>
-            <table>
-                <thead>
+            <div className="container w-50">
+            Title:
+                <label>
+                    <select className="card m-1" id="selectDpt" name="filterDepartment" onChange={filterCourses}>
+                        <option value="">All</option>
+                        {departmentsList.map((e,index) =>
+                            <option value={e.Title} key={index}>{e.Title}</option>
+                            
+                        )} 
+                    </select>
+                </label>
+                <label>
+                    <input className="card m-1" id="searchCourseInput" placeholder="Search by name"></input>
+                </label>
+                <button onClick={filterCourses} type="button" className="btn btn-secondary m-1">Search</button>
+                <button onClick={manageAddWindow} type="button" className="btn btn-secondary m-1">Add Course</button>
+            </div>
+            <table className="table">
+                <thead className="thead">
                     <tr>
                         <th>Course ID</th>
                         <th>Title</th>
                         <th>Capacity</th>
                         <th>Department title</th>
                         <th>Instructor name</th>
+                        <th colSpan="3" className="w-25">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -123,9 +127,9 @@ export default function(){
                             <td>{e.CourseCapacity}</td>
                             <td>{e.DepartmentTitle}</td>
                             <td>{e.InstructorFullName}</td>
-                            <td><button onClick={() => manageEditWindow(e)} type="button" >Edit</button></td>
-                            <td><button type="button" onClick={() => manageModal(e)}>Delete</button></td>
-                            <td><button onClick={() => getEnrollments(e)} type="button" >Students enrolled</button></td>
+                            <td><button onClick={() => manageEditWindow(e)} type="button" className="btn btn-warning">Edit</button></td>
+                            <td><button type="button" onClick={() => manageModal(e)} className="btn btn-danger">Delete</button></td>
+                            <td><button onClick={() => getEnrollments(e)} type="button" className="btn btn-secondary">Students</button></td>
                         </tr>
                     )}
                 </tbody>

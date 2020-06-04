@@ -64,27 +64,30 @@ export default function(){
     return ( 
         <>
             <h1>Course Enrollment</h1>
-            <label>Department
-            <select id="selectDpt" name="filterDepartment" onChange={filterCourses}>
-                <option value="">All</option>
-                {departmentsList.map((e,index) =>
-                    <option value={e.Title} key={index}>{e.Title}</option>
-                    
-                )} 
-            </select>
-            </label>
-            <label>Name:
-                <input id="searchCourse" placeholder="Search by name"></input>
-            </label>
-            <button onClick={filterCourses} type="button">Search</button>
-            <table>
-                <thead>
+            <div className="container w-50">
+                <label>
+                    <select id="selectDpt" name="filterDepartment" onChange={filterCourses}>
+                        <option value="">All</option>
+                        {departmentsList.map((e,index) =>
+                            <option value={e.Title} key={index}>{e.Title}</option>
+                            
+                        )} 
+                    </select>
+                </label>
+                <label>
+                    <input className="card m-1" id="searchCourse" placeholder="Search by name"></input>
+                </label>
+                <button onClick={filterCourses} type="button" className="btn btn-secondary">Search</button>
+            </div>
+            <table className="table">
+                <thead className="thead">
                     <tr>
                         <th>Course ID</th>
                         <th>Title</th>
                         <th>Capacity</th>
                         <th>Department title</th>
                         <th>Instructor name</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -95,7 +98,7 @@ export default function(){
                             <td>{e.CourseCapacity}</td>
                             <td>{e.DepartmentTitle}</td>
                             <td>{e.InstructorFullName}</td>
-                            <td><button onClick={() => enrollIntoCourse(e)} type="button" >Enroll</button></td>
+                            <td><button onClick={() => enrollIntoCourse(e)} type="button" className="btn btn-success" >Enroll</button></td>
                         </tr>
                     )}
                 </tbody>

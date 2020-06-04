@@ -23,13 +23,13 @@ export default function(props){
 
         }
     return(
-        <div>
-            <form id="addCourseForm">
+        <div className="container card w-25">
+            <form id="addCourseForm" className="m-2">
                 <div>
-                    <input id="Title" name="Title" placeholder="Course title"/>
+                    <input className="input-group input-group-text m-1" id="Title" name="Title" placeholder="Course title"/>
                 </div>
                 <div>
-                    <input id="Capacity" name="Capacity" type="number" placeholder="Course capacity"/>
+                    <input className="input-group input-group-text m-1" id="Capacity" name="Capacity" type="number" placeholder="Course capacity"/>
                 </div>
                 <div>
                     <select id="selectDepartment" name="DepartmentId">
@@ -45,8 +45,8 @@ export default function(props){
                         )}
                     </select>
                 </div>
-                <button id="submit" className="submit btn btn-primary" onClick={submitForm}>Add Course</button>
-                <button onClick={() => props.closeWindow()}>Cancel</button>
+                <button id="submit" className="btn btn-outline-success m-1" onClick={submitForm}>Add Course</button>
+                <button className="btn btn-outline-danger m-1" onClick={() => props.closeWindow()}>Cancel</button>
             </form>
         </div>
     )

@@ -77,13 +77,15 @@ export default function(){
     return ( 
         <>
             <h1>Instructor's List</h1>
-            <label>Name:
-                <input id="searchInstInput" placeholder="Search by name"></input>
-            </label>
-            <button onClick={filterInstructors} type="button">Search</button>
-            <button onClick={manageAddWindow} type="button">Add Instructor</button>
-            <table>
-                <thead>
+            <div className="container w-50">
+                <label>
+                    <input className="card m-1" id="searchInstInput" placeholder="Search by name"></input>
+                </label>
+                <button onClick={filterInstructors} className="btn btn-secondary m-1" type="button">Search</button>
+                <button onClick={manageAddWindow} className="btn btn-secondary m-1"type="button">Add Instructor</button>
+            </div>
+            <table className="table">
+                <thead className="thead">
                     <tr>
                         <th>Instructor ID</th>
                         <th>Name</th>
@@ -97,8 +99,8 @@ export default function(){
                             <td>{e.Id}</td>
                             <td>{`${e.LastName.slice(0, 1).toUpperCase()}${e.LastName.slice(1)}, ${e.Name.slice(0, 1).toUpperCase()}${e.Name.slice(1)}`}</td>
                             <td>{e.HireDate.slice(8, 10)}/{e.HireDate.slice(5, 7)}/{e.HireDate.slice(0, 4)}</td>
-                            <td><button onClick={() => manageEditWindow(e)} type="button" >Edit</button></td>
-                            <td><button type="button" onClick={() => manageModal(e)}>Delete</button></td>
+                            <td><button onClick={() => manageEditWindow(e)} type="button" className="btn btn-warning">Edit</button></td>
+                            <td><button type="button" onClick={() => manageModal(e)} className="btn btn-danger">Delete</button></td>
                         </tr>
                     )}
                 </tbody>

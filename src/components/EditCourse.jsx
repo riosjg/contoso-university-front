@@ -32,14 +32,17 @@ export default function(props){
             //   })
         }
     return(
-        <div>
-            <input value={props.course.CourseId} readOnly/>
-            <form id="editCourseForm">
+        <div className="container card w-25">
+            
+            <form id="editCourseForm" className="m-2">
                 <div>
-                    <input id="CourseTitle" name="CourseTitle" value={props.course.CourseTitle} readOnly/>
+                    <input className="input-group input-group-text m-1" value={props.course.CourseId} readOnly/>
                 </div>
                 <div>
-                    <input id="DepartmentTitle" name="DepartmentTitle" value={props.course.DepartmentTitle} readOnly/>
+                    <input className="input-group input-group-text m-1" id="CourseTitle" name="CourseTitle" value={props.course.CourseTitle} readOnly/>
+                </div>
+                <div>
+                    <input className="input-group input-group-text m-1" id="DepartmentTitle" name="DepartmentTitle" value={props.course.DepartmentTitle} readOnly/>
                 </div>
                 <div>
                 <select id="selectInstructor" name="InstructorId">
@@ -49,10 +52,10 @@ export default function(props){
                     </select>
                 </div>
                 <div>
-                    <input id="Capacity" name="Capacity" type="number" placeholder="Course capacity"/>
+                    <input className="input-group input-group-text m-1" id="Capacity" name="Capacity" type="number" placeholder="Course capacity"/>
                 </div>
-                <button id="submit" className="submit btn btn-primary" onClick={submitForm}>Save Changes</button>
-                <button onClick={() => props.closeWindow()}>Cancel</button>
+                <button id="submit" className="btn btn-outline-success m-1" onClick={submitForm}>Save Changes</button>
+                <button onClick={() => props.closeWindow()} className="btn btn-outline-danger m-1">Cancel</button>
             </form>
         </div>
     )

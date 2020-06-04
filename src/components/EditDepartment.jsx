@@ -32,16 +32,16 @@ export default function(props){
             //   })
         }
     return(
-        <div>
-            <form id="editDepForm">
+        <div className="container card w-25">
+            <form id="editDepForm" className="m-2">
                 <div>
-                    <input id="Title" name="Title" value={props.department.Title} readOnly/>
+                    <input className="input-group input-group-text m-1" id="Title" name="Title" value={props.department.Title} readOnly/>
                 </div>
                 <div>
-                    <input id="Description" name="Description" placeholder={props.department.Description}/>
+                    <input className="input-group input-group-text m-1" id="Description" name="Description" placeholder={props.department.Description}/>
                 </div>
-                <button id="submit" className="submit btn btn-primary" onClick={submitForm}>Save</button>
-                <button onClick={() => props.closeWindow()}>Cancel</button>
+                <button id="submit" className="btn btn-outline-success m-1" onClick={submitForm}>Save</button>
+                <button onClick={() => props.closeWindow()} className="btn btn-outline-danger m-1">Cancel</button>
             </form>
         </div>
     )

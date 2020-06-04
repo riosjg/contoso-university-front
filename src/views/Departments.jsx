@@ -77,18 +77,21 @@ export default function(){
     return ( 
         <>
             <h1>Departments List</h1>
-            <label>Title:
-                <input id="searchDepInput" placeholder="Search by title"></input>
-            </label>
-            <button onClick={filterDepartments} type="button">Search</button>
-            <button onClick={manageAddWindow} type="button">Add Department</button>
-            <table>
-                <thead>
+            <div className="container w-50">
+                <label>
+                    <input className="card m-1" id="searchDepInput" placeholder="Search by title"></input>
+                </label>
+                <button onClick={filterDepartments} type="button" className="btn btn-secondary m-1">Search</button>
+                <button onClick={manageAddWindow} type="button" className="btn btn-secondary m-1">Add Department</button>
+            </div>
+            
+            <table className="table">
+                <thead className="thead">
                     <tr>
-                        <th>Department ID</th>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Action</th>
+                        <th scope="col">Department ID</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Description</th>
+                        <th scope="col" colSpan="2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -97,8 +100,8 @@ export default function(){
                             <td>{e.Id}</td>
                             <td>{`${e.Title.slice(0, 1).toUpperCase()}${e.Title.slice(1)}`}</td>
                             <td>{e.Description}</td>
-                            <td><button onClick={() => manageEditWindow(e)} type="button" >Edit</button></td>
-                            <td><button type="button" onClick={() => manageModal(e)}>Delete</button></td>
+                            <td><button className="btn btn-warning" onClick={() => manageEditWindow(e)} type="button" >Edit</button></td>
+                            <td><button className="btn btn-danger" type="button" onClick={() => manageModal(e)}>Delete</button></td>
                         </tr>
                     )}
                 </tbody>

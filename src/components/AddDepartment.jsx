@@ -30,16 +30,16 @@ export default function(props){
             //   })
         }
     return(
-        <div>
-            <form id="addDepForm">
+        <div className="container card w-25">
+            <form id="addDepForm" className="m-2">
                 <div>
-                    <input id="Title" name="Title" placeholder="Department's name"/>
+                    <input className="input-group input-group-text m-1" id="Title" name="Title" placeholder="Department's name"/>
                 </div>
                 <div>
-                    <input id="Description" name="Description" placeholder="Department's description"/>
+                    <input className="input-group input-group-text m-1" id="Description" name="Description" placeholder="Department's description"/>
                 </div>
-                <button id="submit" className="submit btn btn-primary" onClick={submitForm}>Add</button>
-                <button onClick={() => props.closeWindow()}>Cancel</button>
+                <button id="submit" className="btn btn-outline-success m-1" onClick={submitForm}>Add</button>
+                <button className="btn btn-outline-danger m-1" onClick={() => props.closeWindow()}>Cancel</button>
 
             </form>
         </div>
