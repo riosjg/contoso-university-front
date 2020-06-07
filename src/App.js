@@ -12,6 +12,7 @@ import Student from './views/Students'
 import Course from './views/Courses'
 import Enrollments from './views/Enrollments'
 import Navbar from './components/Navbar'
+import Home from './views/Home'
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
           </Route>
           <Route path="/Enrollment">
             <Enrollments />
+          </Route>
+          <Route path="/">
+            <Home />
           </Route>
         </Switch>  
         </UserProvider>

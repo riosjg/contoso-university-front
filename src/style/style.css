@@ -1,0 +1,14 @@
+*{
+    margin: 0;
+}
+.home{
+    background-image: url(../img/bg.jpg);
+    height: 93vh;
+  }
+  .login{
+    background-image: url(../img/bg.jpg);
+    height: 100vh;
+  }
+  nav{
+      height: 7vh;
+  }
