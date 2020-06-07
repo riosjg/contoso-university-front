@@ -108,7 +108,7 @@ export default function(){
             </table>
             {showEdit && <Edit closeWindow={() => setShowEdit(!showEdit)} refresh={() => refreshList()} department={department} />}
             {showAdd && <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} />}
-            {showModal && <Delete closeWindow={() => setShowModal(!showModal)} refresh={() => refreshList()} elDescription={department.Description} elId={department.Id} deleteElement={deleteDepartment}/>} 
+            {showModal && <Delete closeWindow={() => setShowModal(!showModal)} refresh={() => refreshList()} elDescription={department.Title} elId={department.Id} deleteElement={deleteDepartment}/>} 
         </>
      );
 }

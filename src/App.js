@@ -19,7 +19,7 @@ function App() {
     <Router>
       <div className="App">
       <UserProvider  id={3}>
-        <Navbar></Navbar>
+        <Navbar />
         <Switch>
           <Route path="/Department">
             <Department />
