@@ -1,4 +1,5 @@
 import React from 'react';
+import{ Link } from "react-router-dom"
 import '../style/style.css'
 import cogoToast from 'cogo-toast'
 export default function(props){
@@ -47,6 +48,7 @@ export default function(props){
                     <input className="input-group input-group-text m-1" id="Password" name="Password"/>
                 </div>
                 <button id="submit" className="btn btn-outline-success m-1" onClick={authenticateLog}>Login</button>
+                <Link className="btn btn-primary m-1" to='/register'>Register</Link>
             </form>
         </div>
     </div>

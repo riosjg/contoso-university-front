@@ -15,6 +15,7 @@ import Course from './views/Courses'
 import Enrollments from './views/Enrollments'
 import Navbar from './components/Navbar'
 import Home from './views/Home'
+import Register from './views/Register'
 
 function App() {
   const [logged, setLogged]  = useState(false);
@@ -29,7 +30,17 @@ function App() {
   }
   if(!logged){
     return(
-      <Login setLogin={login} />
+      <Router>
+        <Switch>
+          <Route path="/register">
+            <Register/>
+          </Route>
+          <Route path="/">
+            <Login setLogin={login} />
+          </Route>
+        </Switch>
+      </Router>
+      
     )
   }
   else if(localStorage.getItem("Role") === "Admin"){
