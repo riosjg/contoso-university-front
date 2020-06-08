@@ -9,9 +9,10 @@ const UserProvider = (props) => {
         let response = {};
         let res = await fetch(`https://localhost:44340/api/students/${props.id}`)
         response = await res.json();
+        console.log(response);
         setLoggedUser(response);
     })()
-  }, [props.id]) //Empty array as a second parameter prevents fetching an infinite amount of times because of the re-rendering of useEffect() 
+  }, [props.id])
 
   return (
 <>

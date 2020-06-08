@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import{
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom"
 import './App.css';
+import cogoToast from 'cogo-toast'
 import { UserProvider } from './context/userContext'
+import Login from './views/Login'
 import Department from './views/Departments'
 import Instructor from './views/Instructors'
 import Student from './views/Students'
@@ -15,35 +17,66 @@ import Navbar from './components/Navbar'
 import Home from './views/Home'
 
 function App() {
-  return (
-    <Router>
-      <div className="App">
-      <UserProvider  id={3}>
-        <Navbar />
-        <Switch>
-          <Route path="/Department">
-            <Department />
-          </Route>
-          <Route path="/Instructor">
-            <Instructor />
-          </Route>
-          <Route path="/Student">
-            <Student />
-          </Route>
-          <Route path="/Course">
-            <Course />
-          </Route>
-          <Route path="/Enrollment">
-            <Enrollments />
-          </Route>
-          <Route path="/">
-            <Home />
-          </Route>
-        </Switch>  
-        </UserProvider>
-      </div>
-    </Router>
-  );
+  const [logged, setLogged]  = useState(false);
+  const login = () => {
+    setLogged(true);
+  }
+  const logOut = () => {
+    cogoToast.success(<div><b>Logout</b>"You have been succesfully logged out."</div>, {position: 'bottom-right'})
+    localStorage.removeItem('StudentId');
+    localStorage.removeItem('Role');
+    setLogged(false);
+  }
+  if(!logged){
+    return(
+      <Login setLogin={login} />
+    )
+  }
+  else if(localStorage.getItem("Role") === "Admin"){
+    return (
+      <Router>
+        <div className="App">
+          <Navbar logOut={() => logOut()}/>
+          <Switch>
+            <Route path="/Department">
+              <Department />
+            </Route>
+            <Route path="/Instructor">
+              <Instructor />
+            </Route>
+            <Route path="/Student">
+              <Student />
+            </Route>
+            <Route path="/Course">
+              <Course />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>  
+          
+        </div>
+      </Router>
+    );
+  }else{
+    return(
+      <Router>
+        <div className="App">
+          <Navbar logOut={logOut}/>
+          <Switch>
+            <Route path="/">
+              <Home />
+            </Route>
+            <Route path="/Enrollments">
+              <UserProvider  id={localStorage.getItem("StudentId")}>
+                <Enrollments />
+              </UserProvider>
+            </Route>
+          </Switch>  
+        </div>
+      </Router>
+    );
+  }
 }
 
 export default App;
