@@ -4,6 +4,7 @@ import { UserContext } from '../context/userContext'
 export default function(){
     const appContext = useContext(UserContext);
     const { loggedUser } = appContext;
+    const [studentEnrollments, setStudentEnrollments] = useState([]);
     const [coursesList, setCoursesList] = useState([]);
     const [departmentsList, setDepartmentsList] = useState([]);
     const [actualCourse, setActualCourse]  = useState([]);
@@ -46,23 +47,57 @@ export default function(){
             })
         await refreshList();  //loads the new list of departments
     }
+    const deleteEnrollment = async (cId, sId) => {
+        await fetch (`https://localhost:44340/api/deleteEnrollment/${cId}/${sId}`,{
+            method: 'DELETE'
+        });
+        await refreshList();
+    }
     useEffect( () => {
         ( async () => {
             let response;
+            //courses get
             let res = await fetch('https://localhost:44340/api/courses');
             response = await res.json();
-            //courses get
             setCoursesList(response);
+            //departments get
             res = await fetch('https://localhost:44340/api/departments');
             response = await res.json();
-            //departments get
             setDepartmentsList(response);
-            //instructors get
+            //get enrollments by student
+            console.log(loggedUser)
+            res = await fetch(`https://localhost:44340/api/studentEnrollments/${loggedUser.Id}`);
+            response = await res.json();
+            setStudentEnrollments(response);
         }) ()
-    }, [changed])
+    }, [changed, loggedUser])
 
     return ( 
         <>
+            <h1>{loggedUser.Name}'s courses</h1>
+            {studentEnrollments.length > 0 ?  <table className="table">
+                <thead className="thead"> 
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Course title</th>
+                        <th>Fulname</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {studentEnrollments.map( (e, index) =>
+                        <tr key={index}>
+                            <td>{e.StudentId}</td>
+                            <td>{e.CourseTitle}</td>
+                            <td>{e.StudentFullName}</td>
+                            <td><button className="btn btn-danger" onClick={() => deleteEnrollment(e.CourseId, e.StudentId)} type="button">Disenroll</button></td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+            : <p>You aren't enrolled in any course yet.</p>
+    }
+
             <h1>Course Enrollment</h1>
             <div className="container w-50">
                 <label>

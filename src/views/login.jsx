@@ -32,8 +32,6 @@ export default function(props){
             mailInput.focus();
             document.getElementById("Password").value = '';
         }
-        
-
     }
     return (
     <div className="home d-flex justify-content-center align-items-center">
@@ -45,7 +43,7 @@ export default function(props){
                 </div>
                 <div>
                     <p>Password:</p>
-                    <input className="input-group input-group-text m-1" id="Password" name="Password"/>
+                    <input type="password" className="input-group input-group-text m-1" id="Password" name="Password"/>
                 </div>
                 <button id="submit" className="btn btn-outline-success m-1" onClick={authenticateLog}>Login</button>
                 <Link className="btn btn-primary m-1" to='/register'>Register</Link>

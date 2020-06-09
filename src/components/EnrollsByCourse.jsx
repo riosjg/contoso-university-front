@@ -19,7 +19,6 @@ export default function(props){
                         <th>Course title</th>
                         <th>Fulname</th>
                         <th>Actions</th>
-                        {/* aca decia Fullname - Email no me estaria acordando el motivo*/}
                     </tr>
                 </thead>
                 <tbody>

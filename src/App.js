@@ -75,13 +75,13 @@ function App() {
         <div className="App">
           <Navbar logOut={logOut}/>
           <Switch>
-            <Route path="/">
-              <Home />
-            </Route>
             <Route path="/Enrollments">
               <UserProvider  id={localStorage.getItem("StudentId")}>
                 <Enrollments />
               </UserProvider>
+            </Route>
+            <Route path="/">
+              <Home />
             </Route>
           </Switch>  
         </div>
