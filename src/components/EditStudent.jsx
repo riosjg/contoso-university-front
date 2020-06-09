@@ -38,7 +38,7 @@ export default function(props){
                     <input className="input-group input-group-text m-1" id="dni" name="dni" value={props.student.Dni} readOnly/>
                 </div>
                 <div>
-                    <inpu className="input-group input-group-text m-1"t id="lastName" name="lastName" placeholder={props.student.LastName}/>
+                    <input className="input-group input-group-text m-1" id="lastName" name="lastName" placeholder={props.student.LastName}/>
                 </div>
                 <div>
                     <input className="input-group input-group-text m-1" id="Name" name="Name" placeholder={props.student.Name}/>
