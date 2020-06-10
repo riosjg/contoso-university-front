@@ -1,4 +1,5 @@
 import React from 'react';
+import '../style/style.css'
 
 export default function(props){
     const submitForm = async (e) => {
@@ -32,13 +33,14 @@ export default function(props){
             //   })
         }
     return(
-        <div className="container card w-25">
+        <div className="modal-CSS">
+              <div className="container card w-25 mt-5">
             <form id="editDepForm" className="m-2">
                 <div>
                     <input className="input-group input-group-text m-1" id="dni" name="dni" value={props.student.Dni} readOnly/>
                 </div>
                 <div>
-                    <inpu className="input-group input-group-text m-1"t id="lastName" name="lastName" placeholder={props.student.LastName}/>
+                    <input className="input-group input-group-text m-1" id="lastName" name="lastName" placeholder={props.student.LastName}/>
                 </div>
                 <div>
                     <input className="input-group input-group-text m-1" id="Name" name="Name" placeholder={props.student.Name}/>
@@ -47,5 +49,7 @@ export default function(props){
                 <button onClick={() => props.closeWindow()} className="btn btn-outline-danger m-1">Cancel</button>
             </form>
         </div>
+        </div>
+      
     )
 }

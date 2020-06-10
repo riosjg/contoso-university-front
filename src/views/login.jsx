@@ -34,7 +34,7 @@ export default function(props){
         }
     }
     return (
-    <div className="home d-flex justify-content-center align-items-center">
+    <div className="login d-flex justify-content-center align-items-center">
           <div className="container card w-25">
             <form id="loginForm" className="m-2">
                 <div>
@@ -45,8 +45,12 @@ export default function(props){
                     <p>Password:</p>
                     <input type="password" className="input-group input-group-text m-1" id="Password" name="Password"/>
                 </div>
-                <button id="submit" className="btn btn-outline-success m-1" onClick={authenticateLog}>Login</button>
-                <Link className="btn btn-primary m-1" to='/register'>Register</Link>
+                <div className="d-flex justify-content-center">
+                    <button id="submit" className="btn btn-outline-success m-1 w-50" onClick={authenticateLog}>Login</button>
+                </div>
+                <div className="d-flex justify-content-center">
+                    <Link to='/register'>Dont you have an account? Register</Link>
+                </div>
             </form>
         </div>
     </div>

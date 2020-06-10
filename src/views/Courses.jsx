@@ -3,6 +3,11 @@ import Add from '../components/AddCourse'
 import Edit from '../components/EditCourse'
 import Delete from '../components/DeleteModal'
 import Enrolls from '../components/EnrollsByCourse'
+import edit from '../img/edit.png'
+import remove from '../img/remove.png'
+import students from '../img/students.png'
+import add from '../img/add.png'
+import search from '../img/search.png'
 
 export default function(){
     const [coursesList, setCoursesList] = useState([]);
@@ -105,8 +110,8 @@ export default function(){
                 <label>
                     <input className="card m-1" id="searchCourseInput" placeholder="Search by name"></input>
                 </label>
-                <button onClick={filterCourses} type="button" className="btn btn-secondary m-1">Search</button>
-                <button onClick={manageAddWindow} type="button" className="btn btn-secondary m-1">Add Course</button>
+                <button onClick={filterCourses} type="button" className="btn btn-outline-secondary m-1"><span><img src={search} width="25px"/></span></button>
+                <button onClick={manageAddWindow} type="button" className="btn btn-outline-success m-1"><span><img src={add} width="25px"/></span></button>
             </div>
             <table className="table">
                 <thead className="thead">
@@ -127,9 +132,18 @@ export default function(){
                             <td>{e.CourseCapacity}</td>
                             <td>{e.DepartmentTitle}</td>
                             <td>{e.InstructorFullName}</td>
-                            <td><button onClick={() => manageEditWindow(e)} type="button" className="btn btn-warning">Edit</button></td>
-                            <td><button type="button" onClick={() => manageModal(e)} className="btn btn-danger">Delete</button></td>
-                            <td><button onClick={() => getEnrollments(e)} type="button" className="btn btn-secondary">Students</button></td>
+                            <td width="7vw"><button className="btn btn-outline-warning" onClick={() => manageEditWindow(e)} >
+                                <span><img src={edit} width="25px"/></span>
+                                
+                                </button></td>
+                            <td width="7vw"><button className="btn btn-outline-danger" onClick={() => manageModal(e)} >
+                                <span><img src={remove} width="25px"/></span>
+                               
+                                </button></td>
+                            <td width="7vw"><button className="btn btn-outline-primary" onClick={() => getEnrollments(e)} >
+                                <span><img src={students} width="25px"/></span>
+                               
+                                </button></td>
                         </tr>
                     )}
                 </tbody>

@@ -1,4 +1,5 @@
 import React from 'react';
+import '../style/style.css'
 
 export default function(props){
     const submitForm = async (e) => {
@@ -30,20 +31,27 @@ export default function(props){
             //   })
         }
     return(
-        <div className="container card w-25">
-            <form id="addInsForm" className="m-2">
-                <div>
-                    <input className="input-group input-group-text m-1" id="Name" name="Name" placeholder="Instructor's Name"/>
-                </div>
-                <div>
-                    <input className="input-group input-group-text m-1" id="LastName" name="LastName" placeholder="Instructor's last name"/>
-                </div>
-                <div>
-                    <input className="input-group input-group-text m-1" id="HireDate" name="HireDate" type="date"/>
-                </div>
-                <button id="submit" className="btn btn-outline-success m-1" onClick={submitForm}>Add</button>
-                <button className="btn btn-outline-danger m-1" onClick={() => props.closeWindow()}>Cancel</button>
-            </form>
+        <div className="modal-CSS">
+            <div className="container card w-25 mt-5">
+                <form id="addInsForm" className="m-2">
+                    <div className=" text-left">
+                        <div>
+                            Name:
+                            <input className="input-group input-group-text m-1" id="Name" name="Name" placeholder="Instructor's Name"/>
+                        </div>
+                        <div>
+                            LastName:
+                            <input className="input-group input-group-text m-1" id="LastName" name="LastName" placeholder="Instructor's last name"/>
+                        </div>
+                        <div>
+                            Birthdate:
+                            <input className="input-group input-group-text m-1" id="HireDate" name="HireDate" type="date"/>
+                        </div>
+                    </div>
+                    <button id="submit" className="btn btn-outline-success m-1" onClick={submitForm}>Add</button>
+                    <button className="btn btn-outline-danger m-1" onClick={() => props.closeWindow()}>Cancel</button>
+                </form>
+            </div>
         </div>
     )
 }

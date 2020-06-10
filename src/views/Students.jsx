@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Add from '../components/AddStudent'
 import Edit from '../components/EditStudent'
 import Delete from '../components/DeleteModal'
+import edit from '../img/edit.png'
+import remove from '../img/remove.png'
+import add from '../img/add.png'
+import search from '../img/search.png'
 
 export default function(){
     const [studentsList, setStudentsList] = useState([]);
@@ -63,8 +67,8 @@ export default function(){
                 <label>
                     <input className="card m-1" id="searchInput" placeholder="Search by title"></input>
                 </label>
-                <button onClick={filterStudents} type="button" className="btn btn-secondary m-1">Search</button>
-                <button onClick={manageAddWindow} type="button" className="btn btn-secondary m-1">Add Student</button>
+                <button onClick={filterStudents} type="button" className="btn btn-outline-secondary m-1"><span><img src={search} width="25px"/></span></button>
+                <button onClick={manageAddWindow} type="button" className="btn btn-outline-success m-1"><span><img src={add} width="25px"/></span></button>
             </div>
             <table className="table">
                 <thead className="thead">
@@ -72,7 +76,7 @@ export default function(){
                         <th scope="col">Student ID</th>
                         <th scope="col">DNI</th>
                         <th scope="col">Fullname</th>
-                        <th scope="col">Action</th>
+                        <th scope="col" colSpan="2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -81,8 +85,14 @@ export default function(){
                             <td>{e.Id}</td>
                             <td>{e.Dni}</td>
                             <td>{`${e.LastName.slice(0, 1).toUpperCase()}${e.LastName.slice(1)}, ${e.Name.slice(0, 1).toUpperCase()}${e.Name.slice(1)}`}</td>
-                            <td><button className="btn btn-warning" onClick={() => manageEditWindow(e)} type="button" >Edit</button></td>
-                            <td><button className="btn btn-danger" type="button" onClick={() => manageModal(e)}>Delete</button></td>
+                            <td width="7vw"><button className="btn btn-outline-warning" onClick={() => manageEditWindow(e)} >
+                                <span><img src={edit} width="25px"/></span>
+                                
+                                </button></td>
+                            <td width="7vw"><button className="btn btn-outline-danger" onClick={() => manageModal(e)} >
+                                <span><img src={remove} width="25px"/></span>
+                               
+                                </button></td>
                         </tr>
                     )}
                 </tbody>

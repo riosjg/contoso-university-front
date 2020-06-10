@@ -1,4 +1,5 @@
 import React from 'react';
+import '../style/style.css'
 
 export default function(props){
     const submitForm = async (e) => {
@@ -32,7 +33,8 @@ export default function(props){
             //   })
         }
     return(
-        <div className="container card w-25">
+        <div className="modal-CSS">
+             <div className="container card w-25 mt-5">
             
             <form id="editCourseForm" className="m-2">
                 <div>
@@ -58,5 +60,7 @@ export default function(props){
                 <button onClick={() => props.closeWindow()} className="btn btn-outline-danger m-1">Cancel</button>
             </form>
         </div>
+        </div>
+       
     )
 }
