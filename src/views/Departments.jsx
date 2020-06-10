@@ -79,7 +79,7 @@ export default function(){
     }, [changed])
 
     return ( 
-        <>
+        <div className="bg">
             <h1>Departments List</h1>
             <div className="container w-50">
                 <label>
@@ -119,6 +119,6 @@ export default function(){
             {showEdit && <Edit closeWindow={() => setShowEdit(!showEdit)} refresh={() => refreshList()} department={department} />}
             {showAdd && <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} />}
             {showModal && <Delete closeWindow={() => setShowModal(!showModal)} refresh={() => refreshList()} elDescription={department.Title} elId={department.Id} deleteElement={deleteDepartment}/>} 
-        </>
+        </div>
      );
 }

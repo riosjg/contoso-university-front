@@ -94,7 +94,7 @@ export default function(){
     }, [changed])
 
     return ( 
-        <>
+        <div className="bg">
             <h1>Courses' List</h1>
             <div className="container w-50">
             Title:
@@ -152,6 +152,6 @@ export default function(){
             {showAdd && <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} instructors={instructorsList} departments={departmentsList} />}
             {showModal && <Delete closeWindow={() => setShowModal(!showModal)} refresh={() => refreshList()} elDescription={course.CourseTitle} elId={course.CourseId} deleteElement={deleteCourse}/>}
             {showEnrolls && <Enrolls closeWindow={() => setShowEnrolls(!showEnrolls)} enrollments={enrollments} course={course} />}
-        </>
+        </div>
      );
 }

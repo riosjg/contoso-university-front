@@ -17,14 +17,14 @@ export default function(){
     const [showModal, setShowModal] = useState(false);
 
     const filterStudents = () => {
-        let insertedTitle = document.getElementById("searchInput").value;
-        if(insertedTitle===''){
+        let insertedName = document.getElementById("searchInput").value;
+        if(insertedName===''){
             setActualStudent(studentsList);
         }
         //shows the selected student according to the input
         else{
             setActualStudent( studentsList.filter( d => {
-                return d.Title.toLowerCase().match(insertedTitle.toLowerCase());
+                return d.Name.toLowerCase().match(insertedName.toLowerCase());
             }))
         }
         
@@ -61,7 +61,7 @@ export default function(){
     }, [changed])
 
     return ( 
-        <>
+        <div className="bg">
             <h1>Students List</h1>
             <div className="container w-50">
                 <label>
@@ -100,6 +100,6 @@ export default function(){
             {showEdit && <Edit closeWindow={() => setShowEdit(!showEdit)} refresh={() => refreshList()} student={student} />}
             {showAdd && <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} />}
             {showModal && <Delete closeWindow={() => setShowModal(!showModal)} refresh={() => refreshList()} elDescription={student.Name + ' ' + student.LastName} elId={student.Id} deleteElement={deleteStudent}/>} 
-        </>
+        </div>
      );
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../style/style.css'
 import Add from '../components/AddInstructor'
 import Edit from '../components/EditInstructor'
 import Delete from '../components/DeleteModal'
@@ -79,7 +80,7 @@ export default function(){
     }, [changed])
 
     return ( 
-        <>
+        <div className="bg">
             <h1>Instructor's List</h1>
             <div className="container w-50">
                 <label>
@@ -119,6 +120,6 @@ export default function(){
             {showAdd && <Add closeWindow={() => manageAddWindow()} refresh={() => refreshList()} />}
             {showModal && <Delete closeWindow={() => setShowModal(!showModal)} refresh={() => refreshList()} elDescription={instructor.Name + ' ' + instructor.LastName} elId={instructor.Id} deleteElement={deleteInstructor}/>}
 
-        </>
+        </div>
      );
 }

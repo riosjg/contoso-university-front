@@ -4,6 +4,14 @@
 .home{
     background-image: url(../img/bg.jpg);
     height: 93vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+.bg{
+    background-color: #843fbd44;
+    height: 93vh;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   .login{
     background-image: url(../img/bg.jpg);

@@ -73,7 +73,7 @@ export default function(){
     }, [changed, loggedUser])
 
     return ( 
-        <>
+        <div className="bg">
             <h1>{loggedUser.Name}'s courses</h1>
             {studentEnrollments.length > 0 ?  <table className="table">
                 <thead className="thead"> 
@@ -138,6 +138,6 @@ export default function(){
                     )}
                 </tbody>
             </table>
-        </>
+        </div>
      );
 }
